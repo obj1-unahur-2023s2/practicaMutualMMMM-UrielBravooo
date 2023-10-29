@@ -1,0 +1,50 @@
+import viajes.*
+import Socios.*
+
+describe "testX" {
+	
+	const viaje1= new ExcursionACiudad(cantAtraccionesAVisitar=4)
+	
+	
+	
+	//viajes de trekking
+	const viaje2= new SalidaDeTrekking(kilometrosDeSenderos=100,diasDeSol=130)	
+	
+	const viaje3= new SalidaDeTrekking(kilometrosDeSenderos=50,diasDeSol=240)
+	
+	//socio
+	const viajeP= new ViajeDePlaya(largo=1000)
+	const viajeP2= new ViajeDePlaya(largo=2000)
+	const roque= new Socio(actQueRealizo=[viajeP,viajeP2],maxDeActividades=2)
+	const cdg1= new ClaseDeGym()
+
+	test "roque"{
+		assert.equals(true,roque.esAdorador())
+		assert.equals(viajeP2,roque.actividadesEsforzadas())
+		assert.throwsException({roque.realizaActividad(cdg1)})
+		
+	}
+	
+	test "viaje1"{
+		assert.equals(2,viaje1.cantDeDias())
+		assert.equals(false, viaje1.esfuerzo())
+		assert.equals(false, viaje1.sirveBroncearse())
+		}
+		
+	
+	
+	test "viaje1 trekking"{
+		assert.equals(2,viaje2.cantDeDias())
+		assert.equals(true,viaje2.esfuerzo())
+		assert.equals(false,viaje2.sirveBroncearse())
+	}
+	
+
+	test"viaje2 trekking"{
+		assert.equals(1,viaje3.cantDeDias())
+		assert.equals(false,viaje3.esfuerzo())
+		assert.equals(true,viaje3.sirveBroncearse())
+	}
+	
+
+}
