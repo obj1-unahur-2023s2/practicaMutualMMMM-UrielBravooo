@@ -7,6 +7,7 @@ class Viaje{
 	method cantDeDias() 
 	method esfuerzo() 
 	method sirveBroncearse()
+	method recomendadaParaSocio(socio)= socio.leAtraeActividad(self) and self.esViajeInteresante() and not socio.actQueRealizo().contains(self)
 }
 class ViajeDePlaya inherits Viaje{
 	var largo
@@ -38,6 +39,7 @@ class SalidaDeTrekking inherits Viaje{
 	override method sirveBroncearse() = diasDeSol > 200 or (diasDeSol.between(100,200)) and kilometrosDeSenderos > 120	
 }
 class ClaseDeGym inherits Viaje {
+	override method recomendadaParaSocio(socio)= socio.edad().between(20,30)
 	
 	override method idioma() = "español"
 	override method cantDeDias() = 1
